@@ -16,8 +16,8 @@ export class SaleController {
     return this.saleService.create(createSaleDto);
   }
 
-  // @UseGuards(AdminGuard)
-  // @ApiBearerAuth()
+  @UseGuards(AdminGuard)
+  @ApiBearerAuth()
   @Get("get-all")
   findAll() {
     return this.saleService.findAll();
