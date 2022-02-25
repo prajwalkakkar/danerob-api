@@ -7,19 +7,19 @@ import { AdminGuard } from "src/guards/admin.guard";
 @ApiTags("sale")
 @Controller("sale")
 export class SaleController {
-	constructor(private readonly saleService: SaleService) {}
+  constructor(private readonly saleService: SaleService) {}
 
-	@UseGuards(AdminGuard)
-	@ApiBearerAuth()
-	@Post("create-sale")
-	create(@Body() createSaleDto: CreateSaleDto) {
-		return this.saleService.create(createSaleDto);
-	}
+  // @UseGuards(AdminGuard)
+  // @ApiBearerAuth()
+  @Post("create-sale")
+  create(@Body() createSaleDto: CreateSaleDto) {
+    return this.saleService.create(createSaleDto);
+  }
 
-	@UseGuards(AdminGuard)
-	@ApiBearerAuth()
-	@Get("get-all")
-	findAll() {
-		return this.saleService.findAll();
-	}
+  // @UseGuards(AdminGuard)
+  // @ApiBearerAuth()
+  @Get("get-all")
+  findAll() {
+    return this.saleService.findAll();
+  }
 }
