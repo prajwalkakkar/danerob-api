@@ -1,5 +1,6 @@
 import {
 	BeforeInsert,
+	BeforeUpdate,
 	Column,
 	Entity,
 	PrimaryGeneratedColumn,
@@ -26,4 +27,9 @@ export class Admin {
 	private hashPassword = () => {
 		this.password = bcrypt.hashSync(this.password, 12);
 	};
+
+	@BeforeUpdate()
+	private hashPass?() {
+		this.password = bcrypt.hashSync(this.password, 10);
+	}
 }
