@@ -110,4 +110,10 @@ export class AdminService {
     await this.adminRepository.save(admin);
     return { code: 201, message: "Email updated" };
   }
+
+  async findAdminProfile(email: string) {
+    const admin = await this.adminRepository.findOne({ where: { email } });
+    if (!admin) throw new NotFoundException();
+    return { name: admin.name, email: admin.email };
+  }
 }

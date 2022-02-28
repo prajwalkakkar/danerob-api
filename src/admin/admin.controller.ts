@@ -58,4 +58,9 @@ export class AdminController {
   ) {
     return this.adminService.changeEmail(email, changeEmailDto);
   }
+
+  @Get("get-profile")
+  findAdminProfile(@Query("email") email: string) {
+    return this.adminService.findAdminProfile(email);
+  }
 }
