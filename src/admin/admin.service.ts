@@ -98,7 +98,7 @@ export class AdminService {
 
     admin.name = newName;
     await this.adminRepository.save(admin);
-    return { code: 201, message: "Password updated" };
+    return { code: 201, message: "Name updated" };
   }
 
   async changeEmail(email: string, changeEmailDto: ChangeEmailDto) {
@@ -108,6 +108,6 @@ export class AdminService {
 
     admin.email = newEmail;
     await this.adminRepository.save(admin);
-    return { code: 201, message: "Password updated" };
+    return { code: 201, message: "Email updated" };
   }
 }
