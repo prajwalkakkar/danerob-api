@@ -81,34 +81,17 @@ export class AdminService {
     return { code: 200, accessToken };
   }
 
-  async changePassword(email: string, changePasswordDto: ChangePasswordDto) {
-    const { newPassword } = changePasswordDto;
+  async updateAdmin(email: string, updateAdminDto: UpdateAdminDto) {
+    const { newPassword, newEmail, newName } = updateAdminDto;
     const admin = await this.findOne(email);
     if (!admin) throw new HttpException("User not found", HttpStatus.NOT_FOUND);
 
-    admin.password = newPassword;
+    if (newPassword) admin.password = newPassword;
+    if (newEmail) admin.email = newEmail;
+    if (newName) admin.name = newName;
+
     await this.adminRepository.save(admin);
     return { code: 201, message: "Password updated" };
-  }
-
-  async changeName(email: string, changeNameDto: ChangeNameDto) {
-    const { newName } = changeNameDto;
-    const admin = await this.findOne(email);
-    if (!admin) throw new HttpException("User not found", HttpStatus.NOT_FOUND);
-
-    admin.name = newName;
-    await this.adminRepository.save(admin);
-    return { code: 201, message: "Name updated" };
-  }
-
-  async changeEmail(email: string, changeEmailDto: ChangeEmailDto) {
-    const { newEmail } = changeEmailDto;
-    const admin = await this.findOne(email);
-    if (!admin) throw new HttpException("User not found", HttpStatus.NOT_FOUND);
-
-    admin.email = newEmail;
-    await this.adminRepository.save(admin);
-    return { code: 201, message: "Email updated" };
   }
 
   async findAdminProfile(email: string) {
