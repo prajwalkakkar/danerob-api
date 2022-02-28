@@ -12,6 +12,8 @@ import { AdminService } from "./admin.service";
 import { ChangePasswordDto } from "./dto/change-password.dto";
 import { CreateAdminDto } from "./dto/create-admin.dto";
 import { LoginAdminDto } from "./dto/login-admin.dto";
+import { ChangeNameDto } from "./dto/change-name.dto";
+import { ChangeEmailDto } from "./dto/change-email.dto";
 
 @ApiTags("Admin")
 @Controller("admin")
@@ -39,5 +41,18 @@ export class AdminController {
     @Body() changePasswordDto: ChangePasswordDto
   ) {
     return this.adminService.changePassword(email, changePasswordDto);
+  }
+
+  @Patch("update-name")
+  update(@Query("email") email: string, @Body() changeNameDto: ChangeNameDto) {
+    return this.adminService.changeName(email, changeNameDto);
+  }
+
+  @Patch("update-email")
+  update(
+    @Query("email") email: string,
+    @Body() changeEmailDto: ChangeEmailDto
+  ) {
+    return this.adminService.changeEmail(email, changeEmailDto);
   }
 }

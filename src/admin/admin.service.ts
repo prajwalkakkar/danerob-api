@@ -15,6 +15,8 @@ import { Admin } from "./entities/admin.entity";
 import { JwtPayload } from "./interface/jwt-payload.interface";
 import * as bcrypt from "bcrypt";
 import { ChangePasswordDto } from "./dto/change-password.dto";
+import { ChangeEmailDto } from "./dto/change-email.dto";
+import { ChangeNameDto } from "./dto/change-name.dto";
 
 @Injectable()
 export class AdminService {
@@ -85,6 +87,26 @@ export class AdminService {
     if (!admin) throw new HttpException("User not found", HttpStatus.NOT_FOUND);
 
     admin.password = newPassword;
+    await this.adminRepository.save(admin);
+    return { code: 201, message: "Password updated" };
+  }
+
+  async changeName(email: string, changeNameDto: ChangeNameDto) {
+    const { newName } = changeNameDto;
+    const admin = await this.findOne(email);
+    if (!admin) throw new HttpException("User not found", HttpStatus.NOT_FOUND);
+
+    admin.name = newName;
+    await this.adminRepository.save(admin);
+    return { code: 201, message: "Password updated" };
+  }
+
+  async changeEmail(email: string, changeEmailDto: ChangeEmailDto) {
+    const { newEmail } = changeEmailDto;
+    const admin = await this.findOne(email);
+    if (!admin) throw new HttpException("User not found", HttpStatus.NOT_FOUND);
+
+    admin.email = newEmail;
     await this.adminRepository.save(admin);
     return { code: 201, message: "Password updated" };
   }
