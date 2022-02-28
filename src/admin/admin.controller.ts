@@ -9,6 +9,8 @@ import {
 } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { AdminService } from "./admin.service";
+import { ChangeEmailDto } from "./dto/change-email.dto";
+import { ChangeNameDto } from "./dto/change-name.dto";
 import { ChangePasswordDto } from "./dto/change-password.dto";
 import { CreateAdminDto } from "./dto/create-admin.dto";
 import { LoginAdminDto } from "./dto/login-admin.dto";
@@ -34,10 +36,31 @@ export class AdminController {
   }
 
   @Patch("update-password")
-  update(
+  updatePass(
     @Query("email") email: string,
     @Body() changePasswordDto: ChangePasswordDto
   ) {
     return this.adminService.changePassword(email, changePasswordDto);
+  }
+
+  @Patch("update-name")
+  updateName(
+    @Query("email") email: string,
+    @Body() changeNameDto: ChangeNameDto
+  ) {
+    return this.adminService.changeName(email, changeNameDto);
+  }
+
+  @Patch("update-email")
+  updateEmail(
+    @Query("email") email: string,
+    @Body() changeEmailDto: ChangeEmailDto
+  ) {
+    return this.adminService.changeEmail(email, changeEmailDto);
+  }
+
+  @Get("get-profile")
+  findAdminProfile(@Query("email") email: string) {
+    return this.adminService.findAdminProfile(email);
   }
 }
