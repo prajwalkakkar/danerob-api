@@ -25,7 +25,7 @@ export class UserService {
 	}
 
 	async getUserByAddress(userAddress: string) {
-		const user = await this.userRepository.findOne({ where: { userAddress } })
+		const user = await this.userRepository.find({ where: { userAddress } })
 
 		if (!user) throw new NotFoundException()
 
