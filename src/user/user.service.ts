@@ -2,6 +2,7 @@ import { Injectable, InternalServerErrorException, NotFoundException } from "@ne
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { CreateUserDto } from "./dto/create-user.dto";
+import { UpdateUserDto } from "./dto/update-user.dto";
 import { User } from "./entities/user.entity";
 
 @Injectable()
@@ -32,4 +33,20 @@ export class UserService {
 		return user;
 	}
 
+	async updateUser(seed: string, updateUserDto: UpdateUserDto) {
+		const user = await this.userRepository.findOne({where:{seed}})
+
+		const { lastClaimDate, userTransaction } = updateUserDto
+
+		try {
+			user.lastClaimDate = lastClaimDate
+			user.userTransaction = userTransaction
+			await this.userRepository.save(user)
+			return user
+		} catch (err) {
+			console.log('error at updating user', err)
+			throw new InternalServerErrorException()
+		}
+
+	}
 }

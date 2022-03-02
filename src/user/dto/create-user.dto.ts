@@ -21,4 +21,29 @@ export class CreateUserDto {
 	@IsNotEmpty()
 	@IsNumber()
 	amount: number;
+
+	@ApiProperty()
+	@IsNotEmpty()
+	@IsString()
+	seed:string
+
+	@ApiProperty()
+	@IsNotEmpty()
+	@IsString()
+	transaction:string
+
+	@ApiProperty()
+	@IsNotEmpty()
+	@IsString()
+	userTransaction:string
+
+	@ApiProperty()
+	@IsNotEmpty()
+	claimDate:Date
+	
+	@ApiProperty()
+	@IsNotEmpty()
+	lastClaimDate:Date
+
+
 }

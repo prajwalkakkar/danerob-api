@@ -19,8 +19,21 @@ export class User {
 	saleType: SaleType;
 
 	@Column({ nullable: true })
-	lastClaimedDate?: Date;
-
-	@Column({ nullable: true })
 	remaningClaim?: number;
+
+	@Column({nullable:true})
+	seed:string	
+
+	@Column({nullable:true})
+	claimDate:Date
+
+	@Column({nullable:true})
+	lastClaimDate:Date
+	
+	@Column({nullable:true})
+	userTransaction:string
+	
+	@Column({nullable:true})
+	transaction:string
+
 }
