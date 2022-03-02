@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, UseGuards } from "@nestjs/common";
+import { Controller, Get, Post, Body, UseGuards, Query } from "@nestjs/common";
 import { UserService } from "./user.service";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
@@ -7,7 +7,7 @@ import { AdminGuard } from "src/guards/admin.guard";
 @ApiTags("User")
 @Controller("user")
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   // @UseGuards(AdminGuard)
   // @ApiBearerAuth()
@@ -21,5 +21,10 @@ export class UserController {
   @Get("get-all")
   findAll() {
     return this.userService.findAll();
+  }
+
+  @Get('user-by-address')
+  findUserByAddress(@Query('address') userAddress: string) {
+    return this.userService.getUserByAddress(userAddress)
   }
 }
