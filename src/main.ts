@@ -6,6 +6,7 @@ async function bootstrap() {
 	const app = await NestFactory.create(AppModule);
 	app.enableCors();
 
+	app.setGlobalPrefix('api')
 	const options = new DocumentBuilder()
 		.setTitle("Danerob-NFT")
 		.setVersion("1.0")
@@ -14,7 +15,7 @@ async function bootstrap() {
 
 	const document = SwaggerModule.createDocument(app, options);
 
-	SwaggerModule.setup("", app, document);
+	SwaggerModule.setup("api", app, document);
 
 	await app.listen(process.env.PORT || 4000);
 }
