@@ -77,13 +77,16 @@ export const lockToken = async (destinationTokenAccount: string, destinationOwne
   //await checks(destinationTokenAct, destinationOwnerAct);'
   console.log(scheduleDates);
   const schedules: Schedule[] = [];
-  for (let date of scheduleDates || DATES) {
+  for (let date of scheduleDates) {
+
+    const saleAmount = (date.amount/ 100) * amount;
+
     schedules.push(
       new Schedule(
         /** Has to be in seconds */
-        new Numberu64(date),
+        new Numberu64(date.date),
         /** Don't forget to add decimals */
-        new Numberu64(amount * Math.pow(10, DECIMALS)),
+        new Numberu64(saleAmount * Math.pow(10, DECIMALS)),
       ),
     );
   }
