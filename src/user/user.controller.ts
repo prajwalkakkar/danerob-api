@@ -29,7 +29,7 @@ export class UserController {
     return this.userService.getUserByAddress(userAddress)
   }
 
-  @Patch('update-user')
+  @Post('update-user')
   updateUser(@Query('seed') seed:string, @Body() updateUserDto:UpdateUserDto){
     return this.userService.updateUser(seed, updateUserDto)
   }
