@@ -15,6 +15,9 @@ export class User {
 	@Column()
 	amount: number;
 
+	@Column()
+	totalamount: number;
+
 	@Column({ type: "enum", enum: SaleType })
 	saleType: SaleType;
 
