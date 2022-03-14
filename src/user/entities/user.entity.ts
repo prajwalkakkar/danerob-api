@@ -16,7 +16,7 @@ export class User {
 	amount: number;
 
 	@Column({nullable:true})
-	totalamount: number;
+	totalAmount: number;
 
 	@Column({ type: "enum", enum: SaleType })
 	saleType: SaleType;

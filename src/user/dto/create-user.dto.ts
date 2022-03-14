@@ -23,6 +23,10 @@ export class CreateUserDto {
 	amount: number;
 
 	@ApiProperty()
+	@IsNumber()
+	totalAmount: number;
+
+	@ApiProperty()
 	@IsNotEmpty()
 	@IsString()
 	seed:string
