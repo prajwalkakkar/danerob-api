@@ -85,7 +85,7 @@ export const lockToken = async (destinationTokenAccount: string, destinationOwne
     schedules.push(
       new Schedule(
         /** Has to be in seconds */
-        new Numberu64(date.date),
+        new Numberu64(date.dates),
         /** Don't forget to add decimals */
         new Numberu64(saleAmount * Math.pow(10, DECIMALS)),
       ),
