@@ -80,6 +80,7 @@ export const lockToken = async (destinationTokenAccount: string, destinationOwne
   for (let date of scheduleDates) {
 
     const saleAmount = (date.amount/ 100) * amount;
+    
 
     schedules.push(
       new Schedule(
