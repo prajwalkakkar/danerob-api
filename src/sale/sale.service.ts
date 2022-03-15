@@ -37,4 +37,24 @@ export class SaleService {
 
     return sales;
   }
+
+  async getSaleCount() {
+    const seedSales = await this.saleRepository.find({
+      where: { saleType: "seed" },
+    });
+    const privateSales = await this.saleRepository.find({
+      where: { saleType: "private" },
+    });
+    const publicSales = await this.saleRepository.find({
+      where: { saleType: "public" },
+    });
+
+    const saleCount = {
+      seedSaleCount: seedSales.length,
+      privateSaleCount: privateSales.length,
+      publicSaleCount: publicSales.length,
+    };
+
+    return saleCount;
+  }
 }

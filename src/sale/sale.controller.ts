@@ -31,4 +31,9 @@ export class SaleController {
   findSaleByType(@Query("saleType") saleType: SaleType) {
     return this.saleService.getSaleByType(saleType);
   }
+
+  @Get("get-saleCount")
+  findSaleCount() {
+    return this.saleService.getSaleCount();
+  }
 }

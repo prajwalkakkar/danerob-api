@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, UseGuards, Query, Patch } from "@nestjs/common";
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  UseGuards,
+  Query,
+  Patch,
+} from "@nestjs/common";
 import { UserService } from "./user.service";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
@@ -8,7 +16,7 @@ import { UpdateUserDto } from "./dto/update-user.dto";
 @ApiTags("User")
 @Controller("user")
 export class UserController {
-  constructor(private readonly userService: UserService) { }
+  constructor(private readonly userService: UserService) {}
 
   // @UseGuards(AdminGuard)
   // @ApiBearerAuth()
@@ -24,13 +32,21 @@ export class UserController {
     return this.userService.findAll();
   }
 
-  @Get('user-by-address')
-  findUserByAddress(@Query('address') userAddress: string) {
-    return this.userService.getUserByAddress(userAddress)
+  @Get("user-by-address")
+  findUserByAddress(@Query("address") userAddress: string) {
+    return this.userService.getUserByAddress(userAddress);
   }
 
-  @Patch('update-user')
-  updateUser(@Query('seed') seed:string, @Body() updateUserDto:UpdateUserDto){
-    return this.userService.updateUser(seed, updateUserDto)
+  @Patch("update-user")
+  updateUser(
+    @Query("seed") seed: string,
+    @Body() updateUserDto: UpdateUserDto
+  ) {
+    return this.userService.updateUser(seed, updateUserDto);
+  }
+
+  @Get("usersCount")
+  findUsersCoumt() {
+    return this.userService.getUserCount();
   }
 }
