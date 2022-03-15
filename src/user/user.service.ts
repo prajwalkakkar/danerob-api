@@ -66,6 +66,7 @@ export class UserService {
     const uniqueUsers = usersAddresses.filter(
       (user, i, ar) => ar.indexOf(user) === i
     );
-    return uniqueUsers.length;
+
+    return { count: uniqueUsers.length };
   }
 }

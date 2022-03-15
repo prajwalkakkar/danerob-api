@@ -46,7 +46,7 @@ export class UserController {
   }
 
   @Get("usersCount")
-  findUsersCoumt() {
+  findUsersCount() {
     return this.userService.getUserCount();
   }
 }

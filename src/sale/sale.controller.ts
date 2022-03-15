@@ -18,8 +18,8 @@ export class SaleController {
     return this.saleService.create(createSaleDto);
   }
 
-  @UseGuards(AdminGuard)
-  @ApiBearerAuth()
+  // @UseGuards(AdminGuard)
+  // @ApiBearerAuth()
   @Get("get-all")
   findAll() {
     return this.saleService.findAll();
@@ -27,7 +27,7 @@ export class SaleController {
 
   // @UseGuards(AdminGuard)
   // @ApiBearerAuth()
-  @Get("get-saleByTpe")
+  @Get("sale-by-type")
   findSaleByType(@Query("saleType") saleType: SaleType) {
     return this.saleService.getSaleByType(saleType);
   }
